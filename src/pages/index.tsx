@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { getUserRecord } from '../api/userApi';
 import Average from './components/Average/Average';
 import ScoreChart from './components/ScoreChart/ScoreChart';
-import List from './components/List/List';
+import LaneList from './components/List/LaneList';
+import ChampList from './components/ChampList/ChampList';
 
 const OPTION_DATA = ['Normal', 'SoloRank', 'FreeRank'];
 
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
     laning: 0,
     tierHistory: [],
     mostLanes: [],
+    mostChampions: [],
   });
   const [selected, setSelected] = useState('');
 
@@ -38,25 +40,27 @@ const Home: NextPage = () => {
   return (
     <Overlay>
       <RecordBox>
-        <RecordWrap>
-          <RecordTitle>Hide on Bush</RecordTitle>
-          <SelectGame onChange={handleSelect}>
-            {OPTION_DATA.map((el, index) => {
-              return (
-                <SelectOption value={el} key={index}>
-                  {el}
-                </SelectOption>
-              );
-            })}
-          </SelectGame>
-          <DetailRecord>
-            <Average role={role} kda={kda} laning={laning} />
-            <ScoreChart History={tierHistory} />
-            <ScoreChart History={gameRecord.tierHistory} />
-          </DetailRecord>
-        </RecordWrap>
-        <BorderBox></BorderBox>
-        <List mostLanes={gameRecord.mostLanes} />
+        <Wrap>
+          <RecordWrap>
+            <RecordTitle>Hide on Bush</RecordTitle>
+            <SelectGame onChange={handleSelect}>
+              {OPTION_DATA.map((el, index) => {
+                return (
+                  <SelectOption value={el} key={index}>
+                    {el}
+                  </SelectOption>
+                );
+              })}
+            </SelectGame>
+            <DetailRecord>
+              <Average role={role} kda={kda} laning={laning} />
+              <ScoreChart History={tierHistory} />
+            </DetailRecord>
+          </RecordWrap>
+          <BorderBox></BorderBox>
+          <LaneList mostLanes={gameRecord.mostLanes} />
+          <ChampList mostChampions={gameRecord.mostChampions} />
+        </Wrap>
       </RecordBox>
     </Overlay>
   );
@@ -73,24 +77,29 @@ const Overlay = styled.div`
 const RecordBox = styled.div`
   font-family: 'Noto Sans';
   background-color: #ffffff;
-  position: relative;
   width: 520px;
   height: 822px;
-  margin: auto;
+  margin: 200px auto;
+  overflow: auto;
+`;
+
+const Wrap = styled.div`
+  width: 316px;
+  height: 622px;
+  margin: 100px;
 `;
 
 const RecordWrap = styled.div`
   width: 316px;
   height: 254px;
-  margin: 100px 104px 0 100px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const RecordTitle = styled.div`
-  position: absolute;
   width: 316px;
   height: 65px;
-  left: 100px;
-  top: 100px;
+  text-align: center;
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -99,40 +108,32 @@ const RecordTitle = styled.div`
 `;
 
 const SelectGame = styled.select`
-  position: absolute;
   font-size: 11px;
   font-weight: 700;
-  line-height: 15px;
   width: 120px;
   height: 30px;
-  left: 100px;
-  top: 182px;
   border-radius: 4px;
 `;
 
 const SelectOption = styled.option`
-  position: absolute;
   width: 44px;
   font-size: 12px;
-  font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
-  display: flex;
-  align-items: center;
   border: 1px solid #bbbbbb;
   border-radius: 4px;
   color: #2d2b2e;
 `;
 
 const DetailRecord = styled.div`
+  width: 100%;
+  margin-top: 51px;
   display: flex;
+  justify-content: space-between;
 `;
 
 const BorderBox = styled.div`
   width: 320px;
-  position: absolute;
-  top: 397px;
-  left: 100px;
-  border: 1px solid #666666;
+  border-bottom: 1px solid #666666;
 `;

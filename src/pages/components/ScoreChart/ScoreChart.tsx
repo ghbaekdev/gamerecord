@@ -53,17 +53,13 @@ const ScoreChart = (props: HistoryType) => {
         display: false,
       },
     },
-    elements: {
-      point: {
-        radius: 0,
-      },
-    },
   };
 
   const labels = History?.map((record) => record.leaguePoint);
 
   const data = {
     labels: labels,
+
     datasets: [
       {
         type: 'line',
@@ -71,17 +67,21 @@ const ScoreChart = (props: HistoryType) => {
         data: pointHistory,
         borderWidth: 1,
         pointStyle: 'circle',
-        pointRadius: 5,
-        pointBorderColor: '#318EEF',
-        borderColor: '#318EEF',
+        pointRadius: (num: any) =>
+          num.index === pointHistory.length - 1 ? 5 : 0,
         tension: 0.1,
+        backgroundColor: '#318EEF',
       },
     ],
   };
 
   return (
     <ChartWrap>
-      <Line options={options} data={data} />
+      <Line
+        options={options}
+        data={data}
+        style={{ height: '38px', width: '154px' }}
+      />
     </ChartWrap>
   );
 };
@@ -89,9 +89,6 @@ const ScoreChart = (props: HistoryType) => {
 export default ScoreChart;
 
 const ChartWrap = styled.div`
-  width: 154px;
-  height: 38px;
-  position: absolute;
-  left: 236px;
-  top: 303px;
+  /* width: 154px;
+  height: 38px; */
 `;

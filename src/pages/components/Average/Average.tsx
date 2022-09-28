@@ -16,7 +16,9 @@ const Average = (props: RecordType) => {
         <DetailName>{role.toFixed(2)}</DetailName> <DetailText>인분</DetailText>
       </DetailBox>
       <DetailBox>
-        <DetailName>{laning.toFixed(2)}</DetailName>{' '}
+        <DetailName>
+          {laning.toFixed(1)}:{10 - laning.toFixed(1)}
+        </DetailName>{' '}
         <DetailText>라인전</DetailText>
       </DetailBox>
       <DetailBox>
@@ -31,16 +33,16 @@ export default Average;
 const DetailWrap = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  /* position: absolute; */
   height: 22px;
-  left: 100px;
-  top: 288px;
+  /* left: 100px;
+  top: 288px; */
 `;
 
 const DetailBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 89px;
+  width: 99px;
   font-size: 11px;
   font-weight: 500;
   line-height: 15px;
@@ -53,7 +55,10 @@ const DetailName = styled.span`
 `;
 
 const DetailText = styled.span`
+  width: 30px;
+  margin-left: auto;
   font-size: 11px;
   font-weight: 500;
   line-height: 22px;
+  text-align: left;
 `;
