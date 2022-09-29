@@ -30,16 +30,13 @@ const Average = (props: RecordType) => {
 
 export default Average;
 
-const DetailWrap = styled.div`
+export const DetailWrap = styled.div`
   display: flex;
   flex-direction: column;
-  /* position: absolute; */
   height: 22px;
-  /* left: 100px;
-  top: 288px; */
 `;
 
-const DetailBox = styled.div`
+export const DetailBox = styled.div`
   display: flex;
   justify-content: space-between;
   width: 99px;
@@ -48,12 +45,11 @@ const DetailBox = styled.div`
   line-height: 15px;
 `;
 
-const DetailName = styled.span`
+export const DetailName = styled.span`
   font-size: 16px;
   font-weight: 700;
   line-height: 22px;
 `;
-
 const DetailText = styled.span`
   width: 30px;
   margin-left: auto;

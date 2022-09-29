@@ -15,10 +15,12 @@ interface mostLanesType {
     role: number;
     winRate: number;
   }[];
+  getRecord: (selected: string, lane: string) => void;
+  gameType: string;
 }
 
 const LaneList = (props: mostLanesType) => {
-  const { mostLanes } = props;
+  const { mostLanes, getRecord, gameType } = props;
 
   return (
     <ListWrap>
@@ -33,7 +35,7 @@ const LaneList = (props: mostLanesType) => {
       </ListTitle>
       {mostLanes.map(({ lane, matchCount, winRate, role, laning, kda }) => {
         return (
-          <Card key={lane}>
+          <Card key={lane} onClick={() => getRecord(gameType, lane)}>
             <CardHeader>
               <ImageBox>
                 <Image
@@ -68,7 +70,7 @@ export const ListWrap = styled.div`
   margin-top: 20px;
 `;
 
-const ListTitle = styled.div`
+export const ListTitle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -78,34 +80,34 @@ const ListTitle = styled.div`
   font-weight: 500;
 `;
 
-const TitleHeader = styled.span`
+export const TitleHeader = styled.span`
   width: 54px;
   height: 14px;
 `;
 
-const TitleCategories = styled.div`
+export const TitleCategories = styled.div`
   display: flex;
 `;
 
-const WinRateSpan = styled.span`
+export const WinRateSpan = styled.span`
   width: 19px;
   height: 14px;
   margin: 0 23px 0 62px;
 `;
 
-const RoleSpan = styled.span`
+export const RoleSpan = styled.span`
   width: 19px;
   height: 14px;
   margin-right: 13px;
 `;
 
-const RaneSpan = styled.span`
+export const RaneSpan = styled.span`
   width: 28px;
   height: 14px;
   margin-right: 11px;
 `;
 
-const KdaSpan = styled.span`
+export const KdaSpan = styled.span`
   width: 19px;
   margin-right: 5px;
 `;

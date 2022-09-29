@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,7 +20,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 interface HistoryType {
@@ -39,12 +41,30 @@ const ScoreChart = (props: HistoryType) => {
   const pointHistory = History?.map(({ leaguePoint }) => leaguePoint);
 
   const options = {
+    responsive: false,
     plugins: {
+      datalabels: {
+        display: (lp: any) => {
+          return lp.dataIndex === 99;
+        },
+        color: 'black',
+        align: 'end',
+        labels: {
+          padding: { top: 30 },
+          title: {
+            font: {
+              weight: 'bold',
+            },
+          },
+          value: {
+            color: 'green',
+          },
+        },
+      },
       legend: {
         display: false,
       },
     },
-
     scales: {
       x: {
         display: false,
@@ -59,7 +79,6 @@ const ScoreChart = (props: HistoryType) => {
 
   const data = {
     labels: labels,
-
     datasets: [
       {
         type: 'line',
@@ -67,10 +86,11 @@ const ScoreChart = (props: HistoryType) => {
         data: pointHistory,
         borderWidth: 1,
         pointStyle: 'circle',
-        pointRadius: (num: any) =>
-          num.index === pointHistory.length - 1 ? 5 : 0,
+        pointRadius: (lp: any) =>
+          lp.index === pointHistory.length - 1 ? 5 : 0,
         tension: 0.1,
         backgroundColor: '#318EEF',
+        borderColor: '#318EEF',
       },
     ],
   };
@@ -80,7 +100,7 @@ const ScoreChart = (props: HistoryType) => {
       <Line
         options={options}
         data={data}
-        style={{ height: '38px', width: '154px' }}
+        style={{ height: '84px', width: '154px' }}
       />
     </ChartWrap>
   );
@@ -88,7 +108,4 @@ const ScoreChart = (props: HistoryType) => {
 
 export default ScoreChart;
 
-const ChartWrap = styled.div`
-  /* width: 154px;
-  height: 38px; */
-`;
+const ChartWrap = styled.div``;

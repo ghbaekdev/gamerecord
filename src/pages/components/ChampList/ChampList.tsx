@@ -19,15 +19,18 @@ interface mostChampionsType {
     role: number;
     winRate: number;
   }[];
+  getRecord: (selected: string, lane: string, champ: string) => void;
+  gameType: string;
 }
 
 const ChampList = (props: mostChampionsType) => {
-  const { mostChampions } = props;
-
+  const { mostChampions, getRecord, gameType } = props;
+  // console.log(mostChampions);
   return (
     <>
       {mostChampions?.map(
         ({
+          key,
           imageUrl,
           id,
           name,
@@ -39,7 +42,7 @@ const ChampList = (props: mostChampionsType) => {
           lane,
         }) => {
           return (
-            <S.Card key={id}>
+            <S.Card key={id} onClick={() => getRecord(gameType, key, lane)}>
               <S.CardHeader>
                 <S.ImageBox>
                   <ChampIcon url={imageUrl} lane={lane} />
