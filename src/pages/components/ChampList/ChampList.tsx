@@ -25,7 +25,7 @@ interface mostChampionsType {
 
 const ChampList = (props: mostChampionsType) => {
   const { mostChampions, getRecord, gameType } = props;
-  // console.log(mostChampions);
+
   return (
     <>
       {mostChampions?.map(

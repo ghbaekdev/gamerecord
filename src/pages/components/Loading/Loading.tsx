@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as S from '../../index';
 import * as A from '../List/LaneList';
+import * as D from '../SelectList/SelectList';
 
 const Loading = () => {
   return (
@@ -11,9 +12,10 @@ const Loading = () => {
         <S.Wrap>
           <S.RecordWrap>
             <S.RecordTitle>Hide on Bush</S.RecordTitle>
-            <S.SelectGame>
-              <S.SelectOption>SoloRank</S.SelectOption>
-            </S.SelectGame>
+            <SkSelectTitle>
+              SoloRank
+              <SkButtonImg src="/assets/buttonIcon.svg" alt="arrow" />
+            </SkSelectTitle>
             <S.DetailRecord>
               {/* <A.DetailWrap>
                 <A.DetailBox>ㅇㅇㅇ</A.DetailBox>
@@ -71,6 +73,29 @@ const SkChartBox = styled.div`
   width: 174px;
   height: 77px;
   background-color: #eeeeee;
+`;
+
+const SkSelectTitle = styled.button`
+  width: 120px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #bbbbbb;
+  background-color: white;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  padding-left: 12px;
+  line-height: 30px;
+  position: relative;
+`;
+
+const SkButtonImg = styled.img`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  margin-top: -3px;
+  width: 10px;
+  height: 6px;
 `;
 
 const SkListTitle = styled.div`

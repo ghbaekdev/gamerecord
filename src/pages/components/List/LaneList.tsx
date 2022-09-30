@@ -24,15 +24,6 @@ const LaneList = (props: mostLanesType) => {
 
   return (
     <ListWrap>
-      <ListTitle>
-        <TitleHeader>최근 30경기</TitleHeader>
-        <TitleCategories>
-          <WinRateSpan>승률</WinRateSpan>
-          <RoleSpan>인분</RoleSpan>
-          <RaneSpan>라인전</RaneSpan>
-          <KdaSpan>KDA</KdaSpan>
-        </TitleCategories>
-      </ListTitle>
       {mostLanes.map(({ lane, matchCount, winRate, role, laning, kda }) => {
         return (
           <Card key={lane} onClick={() => getRecord(gameType, lane)}>
@@ -67,59 +58,32 @@ export default LaneList;
 
 export const ListWrap = styled.div`
   width: 255px;
-  margin-top: 20px;
 `;
-
-export const ListTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 0 0 15px;
-  font-size: 10px;
-  font-weight: 14px;
-  font-weight: 500;
-`;
-
-export const TitleHeader = styled.span`
-  width: 54px;
-  height: 14px;
-`;
-
-export const TitleCategories = styled.div`
-  display: flex;
-`;
-
-export const WinRateSpan = styled.span`
-  width: 19px;
-  height: 14px;
-  margin: 0 23px 0 62px;
-`;
-
-export const RoleSpan = styled.span`
-  width: 19px;
-  height: 14px;
-  margin-right: 13px;
-`;
-
-export const RaneSpan = styled.span`
-  width: 28px;
-  height: 14px;
-  margin-right: 11px;
-`;
-
-export const KdaSpan = styled.span`
-  width: 19px;
-  margin-right: 5px;
-`;
-
 export const Card = styled.div`
+  position: relative;
   display: flex;
-  width: 255px;
+  width: 283px;
   height: 40px;
   border-radius: 6px;
-  /* margin: 3px 100px 0 132px; */
-  padding-left: 14px;
+  padding: 0 14px;
   justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  &:hover {
+    border: 1px dashed #666666;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 14px;
+      height: 8px;
+      margin-top: -4px;
+      margin-right: -18px;
+      background: url('/assets/listarrow.svg') 50% 50% no-repeat;
+    }
+  }
 `;
 
 export const CardHeader = styled.div`

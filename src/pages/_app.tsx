@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import { useState } from 'react';
 import GlobalStyle from '../../styles/global-style';
 import {
   QueryClient,
