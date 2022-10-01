@@ -38,11 +38,6 @@ const Home: NextPage = () => {
     }
   );
 
-  const handleSelected = (select: string) => {
-    setSelected(select);
-    setSelectModal(false);
-  };
-
   const handleLaneRecord = (gameType: string, lane: string) => {
     getLaneRecord(gameType, lane).then((res) => {
       alert('라인별 데이터 요청함수');
@@ -56,6 +51,12 @@ const Home: NextPage = () => {
       setGameRecord(res.data);
     });
   };
+
+  const handleSelected = (select: string) => {
+    setSelected(select);
+    setSelectModal(false);
+  };
+
   if (isLoading) return <Loading />;
 
   return (
