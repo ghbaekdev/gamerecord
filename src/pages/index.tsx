@@ -100,7 +100,6 @@ const Home: NextPage = () => {
               getRecord={handleChampRecord}
             />
           </ListBox>
-          <Loading />
         </Wrap>
       </RecordBox>
     </>
