@@ -1,5 +1,7 @@
 # yourggassignment
 
+yourgg 리그오브레전드 전적 api를 활용한 롤 전적 애플리케이션.
+
 ## Tech Stack
 
 <div>
@@ -33,6 +35,28 @@ yarn dev
 
 - 왼쪽 디자인 100% 구현 (폰트, 간격, 사이즈 등)
 - 매치 카테고리 변경
+  <img width="152" alt="스크린샷 2022-10-01 오전 9 28 11" src="https://user-images.githubusercontent.com/97820540/193375771-a2d31de2-0079-4729-b982-9992bbc2b535.png">
+  <img width="340" alt="스크린샷 2022-10-01 오전 9 31 17" src="https://user-images.githubusercontent.com/97820540/193375870-dc4bc69a-7690-4713-8e3f-f1fbae3aa348.png">
+
+기존 select 태그 사용시 옵션부분 스타일링이 불가하여. div 태그와 ul, li 태그를 사용하여 모달창 형식으로 구현.
+<img width="340" alt="스크린샷 2022-10-01 오전 9 31 17" src="https://user-images.githubusercontent.com/97820540/193375870-dc4bc69a-7690-4713-8e3f-f1fbae3aa348.png">
+
 - 하단 챔피언(라인) 선택
-- 1, 2 변경시마다 browser history에 쌓기 (새로고침시 현재 선택된 1, 2 필터들 유지하기)(미구현)
+  <img width="329" alt="image" src="https://user-images.githubusercontent.com/97820540/193376057-d4b5ca0d-ee26-4b9c-83cc-1b9f72fe5f8e.png">
+
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/97820540/193376073-0d118bed-ded1-4c00-98d0-4ba4b6da9af8.png">
+
+data의 mostLanes, mostChampions 두 개의 컴포넌트로 분류하여 리스트로 구성.
+라인, 챔피언 클릭시 해당 값 파라미터로 전달하여 api 호출.
+
+- 1, 2 변경시마다 browser history에 쌓기 (새로고침시 현재 선택된 1, 2 필터들 유지하기)
+
 - 최초 API 로딩 / 매치 카테고리 변경시 우측의 로딩 UI 표현하기
+
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/97820540/193378132-c0e8e019-0d86-4ee0-9f34-7eaec27d9afb.png">
+
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/97820540/193378148-a4354519-8173-4047-a99f-74b4633ccbec.png">
+
+![image](https://user-images.githubusercontent.com/97820540/193378294-2153cc61-9713-4cd1-b9dc-0dcbeb4bea33.png)
+
+react query 라이브러리 사용하여 isLoading이 true 일시 로딩 컴포넌트 실행.
