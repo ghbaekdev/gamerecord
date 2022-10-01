@@ -39,10 +39,9 @@ interface HistoryType {
 const ScoreChart = (props: HistoryType) => {
   const { History } = props;
   const pointHistory = History?.map(({ leaguePoint }) => leaguePoint);
-  const recentTier = History[History.length - 1].tier;
-  const recentUpdated = History[History.length - 1].updated;
+  const recentTier = History[History.length - 1]?.tier;
+  const recentUpdated = History[History.length - 1]?.updated;
   const date = new Date(recentUpdated);
-  console.log(History);
 
   let year = date.getFullYear();
   let month = date.getMonth() + 1;

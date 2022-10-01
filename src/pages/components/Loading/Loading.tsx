@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import * as S from '../../index';
 import * as A from '../List/LaneList';
-import * as D from '../SelectList/SelectList';
 
 const Loading = () => {
   return (
@@ -17,11 +16,6 @@ const Loading = () => {
               <SkButtonImg src="/assets/buttonIcon.svg" alt="arrow" />
             </SkSelectTitle>
             <S.DetailRecord>
-              {/* <A.DetailWrap>
-                <A.DetailBox>ㅇㅇㅇ</A.DetailBox>
-              </A.DetailWrap> */}
-              {/* <SkDetailName></SkDetailName>
-                  <SkDetailText></SkDetailText> */}
               <SkDetailWrap>
                 <SkDetailBox></SkDetailBox>
                 <SkDetailBox></SkDetailBox>
@@ -102,7 +96,7 @@ const SkListTitle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 0 0 0 15px;
+  margin: 20px 0 0 15px;
   font-size: 10px;
   font-weight: 14px;
   font-weight: 500;

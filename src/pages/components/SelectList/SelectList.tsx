@@ -38,7 +38,7 @@ export const SelectOption = styled.li`
     border: 0;
     background: none;
     border-radius: 0;
-    &::hover {
+    &:hover {
       background: #eeeeee;
     }
   }

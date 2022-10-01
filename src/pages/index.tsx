@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import styled from 'styled-components';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { getChampRecord, getLaneRecord, getUserRecord } from '../api/userApi';
 import { useQuery } from '@tanstack/react-query';
 import Average from './components/Average/Average';
@@ -23,15 +23,19 @@ const Home: NextPage = () => {
   const [selected, setSelected] = useState('SoloRank');
   const [selectmodal, setSelectModal] = useState(false);
 
-  const { isLoading, data } = useQuery(['gamerecords'], async () => {
-    const response = await getUserRecord(selected);
-    setGameRecord(response.data);
-    return response;
-  });
+  const { role, laning, kda, mostChampions, mostLanes, tierHistory } =
+    gameRecord;
 
-  const count = useMemo(
-    () => getUserRecord(selected).then((res) => console.log(res.data)),
-    [selected]
+  const { isLoading } = useQuery(
+    ['gamerecords', selected],
+    async () => {
+      const response = await getUserRecord(selected);
+      setGameRecord(response.data);
+      return response;
+    },
+    {
+      enabled: !!selected,
+    }
   );
 
   const handleSelected = (select: string) => {
@@ -41,18 +45,19 @@ const Home: NextPage = () => {
 
   const handleLaneRecord = (gameType: string, lane: string) => {
     getLaneRecord(gameType, lane).then((res) => {
-      console.log(res.data);
+      alert('라인별 데이터 요청함수');
       setGameRecord(res.data);
     });
   };
 
   const handleChampRecord = (gameType: string, champ: string, lane: string) => {
     getChampRecord(gameType, champ, lane).then((res) => {
-      console.log(res.data);
+      alert('챔피언별 데이터 요청함수');
       setGameRecord(res.data);
     });
   };
   if (isLoading) return <Loading />;
+
   return (
     <>
       <Overlay></Overlay>
@@ -69,12 +74,8 @@ const Home: NextPage = () => {
               {selectmodal && <SelectList handleSelected={handleSelected} />}
             </SelectBox>
             <DetailRecord>
-              <Average
-                role={gameRecord.role}
-                kda={gameRecord.kda}
-                laning={gameRecord.laning}
-              />
-              <ScoreChart History={gameRecord.tierHistory} />
+              <Average role={role} kda={kda} laning={laning} />
+              <ScoreChart History={tierHistory} />
             </DetailRecord>
           </RecordWrap>
           <BorderBox></BorderBox>
@@ -89,16 +90,17 @@ const Home: NextPage = () => {
           </ListTitle>
           <ListBox>
             <LaneList
-              mostLanes={data?.data.mostLanes}
+              mostLanes={mostLanes}
               getRecord={handleLaneRecord}
               gameType={selected}
             />
             <ChampList
-              mostChampions={data?.data.mostChampions}
+              mostChampions={mostChampions}
               gameType={selected}
               getRecord={handleChampRecord}
             />
           </ListBox>
+          <Loading />
         </Wrap>
       </RecordBox>
     </>
@@ -195,11 +197,11 @@ export const ListTitle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 255px;
-  margin: 0 0 0 15px;
+  margin: 20px 0 0 15px;
   font-size: 10px;
   font-weight: 14px;
   font-weight: 500;
-  margin-top: 20px;
+\
 `;
 
 export const TitleHeader = styled.span`
