@@ -41,6 +41,7 @@ const Home: NextPage = () => {
   const handleLaneRecord = (gameType: string, lane: string) => {
     getLaneRecord(gameType, lane).then((res) => {
       alert('라인별 데이터 요청함수');
+      console.log('lane ', res.data);
       setGameRecord(res.data);
     });
   };
@@ -48,6 +49,7 @@ const Home: NextPage = () => {
   const handleChampRecord = (gameType: string, champ: string, lane: string) => {
     getChampRecord(gameType, champ, lane).then((res) => {
       alert('챔피언별 데이터 요청함수');
+      console.log('champ ', res.data);
       setGameRecord(res.data);
     });
   };
@@ -71,7 +73,6 @@ const Home: NextPage = () => {
                 {selected}
                 <ButtonImg src="/assets/buttonIcon.svg" alt="arrow" />
               </SelectTitle>
-
               {selectmodal && <SelectList handleSelected={handleSelected} />}
             </SelectBox>
             <DetailRecord>
