@@ -2,12 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface UrlType {
-  url: {
-    url: string;
-  };
-  lane: {
-    lane: string;
-  };
+  url: string;
+  lane: string;
 }
 
 const ChampIcon = ({ url, lane }: UrlType) => {

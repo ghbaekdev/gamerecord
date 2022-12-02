@@ -5,17 +5,13 @@ import {
   QueryClientProvider,
   Hydrate,
 } from '@tanstack/react-query';
+import React from 'react';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    },
-  },
-});
-
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps,
+}: AppProps<{ dehydratedState: unknown }>) {
+  const [queryClient] = React.useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps?.dehydratedState}>

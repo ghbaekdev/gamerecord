@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "aws s3 sync ./out s3://gamegg --profile=gwanghyunbaek",
-    "production": "aws s3 sync ./out s3://gamegg --profile=gwanghyunbaek"
+    "deploy": "aws s3 sync ./build s3://gamegg --profile=gwanghyunbaek",
+    "production": "aws s3 sync ./build s3://gamegg --profile=gwanghyunbaek"
   },
   "dependencies": {
     "@svgr/webpack": "^6.3.1",

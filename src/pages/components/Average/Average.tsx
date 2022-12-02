@@ -17,8 +17,8 @@ const Average = (props: RecordType) => {
       </DetailBox>
       <DetailBox>
         <DetailName>
-          {laning.toFixed(1)}:{10 - laning.toFixed(1)}
-        </DetailName>{' '}
+          {laning.toFixed(1)}:{10 - Number(laning.toFixed(1))}
+        </DetailName>
         <DetailText>라인전</DetailText>
       </DetailBox>
       <DetailBox>

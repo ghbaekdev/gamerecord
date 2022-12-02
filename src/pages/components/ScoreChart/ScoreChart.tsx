@@ -54,7 +54,6 @@ const ScoreChart = (props: HistoryType) => {
     ('00' + day.toString()).slice(-2);
 
   const options = {
-    // responsive: false,
     maintainAspectRatio: false,
     plugins: {
       datalabels: {
@@ -103,7 +102,7 @@ const ScoreChart = (props: HistoryType) => {
         data: pointHistory,
         borderWidth: 1,
         pointStyle: 'circle',
-        pointRadius: (lp: any) =>
+        pointRadius: (lp: { index?: number }) =>
           lp.index === pointHistory.length - 1 ? 2 : 0,
         tension: 0.1,
         backgroundColor: '#318EEF',
